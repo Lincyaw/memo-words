@@ -1,16 +1,3 @@
-# umi project
+# 一个简单的web端单词记忆
 
-## Getting Started
-
-Install dependencies,
-
-```bash
-$ yarn
-```
-
-Start the dev server,
-
-```bash
-$ yarn start
-```
-# memo-words
+后端代码是 https://github.com/Lincyaw/memo-word-backend
