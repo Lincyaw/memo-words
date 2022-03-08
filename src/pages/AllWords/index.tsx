@@ -30,6 +30,20 @@ const AllWords = () => {
     console.log(w);
   });
 
+  const { run: rememberd } = useRequest(async (word: string) => {
+    const w = await request<{ label: string }[]>('/api/v1/remember/' + word, {
+      method: 'POST',
+    });
+    console.log(w);
+  });
+
+  const { run: forgot } = useRequest(async (word: string) => {
+    const w = await request<{ label: string }[]>('/api/v1/forget/' + word, {
+      method: 'POST',
+    });
+    console.log(w);
+  });
+
   return (
     <>
       <Row gutter={24} justify="center">
@@ -53,15 +67,19 @@ const AllWords = () => {
                     删除
                   </Button>,
                   <Button
-                    onClick={() => {
+                    onClick={async () => {
                       console.log(item.label);
+                      await forgot(item.label);
+                      await getWords();
                     }}
                   >
                     <CloseOutlined />
                   </Button>,
                   <Button
-                    onClick={() => {
+                    onClick={async () => {
                       console.log(item.label);
+                      await rememberd(item.label);
+                      await getWords();
                     }}
                   >
                     <CheckOutlined />
